@@ -8,7 +8,7 @@ import numpy as np
 # Load Data
 @st.cache
 def load_data():
-    df = pd.read_csv('path/to/your/trips.csv')
+    df = pd.read_csv('https://sds-aau.github.io/SDS-master/M1/data/trips.csv')
     return df
 
 # Haversine Distance Function
