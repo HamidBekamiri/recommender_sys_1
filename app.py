@@ -47,6 +47,7 @@ average_cost_per_day = {
 if st.button('Find My Trip!'):
     recommended_places = []
     
+    # Check for preferred place first
     if preferred_place in average_cost_per_day.keys():
         cost_for_preferred_place = average_cost_per_day[preferred_place]
         if cost_for_preferred_place * trip_duration <= budget:
@@ -58,9 +59,10 @@ if st.button('Find My Trip!'):
             budget -= cost_for_preferred_place * trip_duration
             trip_duration = 0  # Reset the remaining duration
     
+    # Check for other places
     for place, cost_per_day in average_cost_per_day.items():
         if place == preferred_place:
-            continue
+            continue  # Skip the preferred place as it's already in the list
         if cost_per_day * trip_duration <= budget:
             recommended_places.append({
                 'Place': place,
@@ -74,3 +76,4 @@ if st.button('Find My Trip!'):
         st.table(pd.DataFrame(recommended_places))
     else:
         st.warning('No trips could be found within the specified budget and duration.')
+
